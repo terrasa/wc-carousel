@@ -33,12 +33,12 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   }
   
    firstUpdated () {
-     (async() => {
-        await this.getData()
-        this.urls = await eval(`this.data.${this.slideUrls}`),
-        this.slidesNumber = await this.urls.length - 1
+    (async() => {
+      await this.getData()
+      this.urls = await eval(`this.data.${this.slideUrls}`),
+      this.slidesNumber = await this.urls.length - 1
       
-      })()
+    })()
     this.slides = this.shadowRoot.querySelectorAll('.slider__slide')
     const attributes = Object.assign({}, this.dataset)
     const attKeys = Object.keys(attributes)
@@ -92,9 +92,9 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
 
   get loadingTemplate () {
     return html`
-    <div class="slider__slide" >
-      <h3>Cargando componente </h3>
-    </div>
+      <div class="slider__slide" >
+        <h3>Cargando componente </h3>
+      </div>
     `
   }
 
@@ -109,19 +109,18 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
               </div>
             `
           ))
-          
-      }
+        }  
         <button class='slider__btn slider__btn--prev' @click=${this.xdvChangeSlide} type="button">&lt;</button>
         <button class='slider__btn slider__btn--next' @click=${this.xdvChangeSlide} type="button">&gt;</button>
         <div class="slider__dots">
-        ${
-          this.urls.map((url, index) => {
-            return html`
-              <div class="slider__dot" ?selected=${(index===this.slideSelected) ? true : false} @click=${(e) => this.xdvChangeSlideDots(index, e)}>
-              </div>
-            `
-          })
-        }
+          ${
+            this.urls.map((url, index) => {
+              return html`
+                <div class="slider__dot" ?selected=${(index===this.slideSelected) ? true : false} @click=${(e) => this.xdvChangeSlideDots(index, e)}>
+                </div>
+              `
+            })
+          }
         </div>
       </div>
     `
