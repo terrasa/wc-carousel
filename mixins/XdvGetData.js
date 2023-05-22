@@ -20,6 +20,7 @@ export const XdvGetData = (superclass) => {
       .then((response) => response.json())
       .then((json) => json
       );
+      return this.data;
     }
   }
 

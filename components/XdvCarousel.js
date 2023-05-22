@@ -4,6 +4,7 @@ import { LitElement, html, css } from 'lit';
 import { XdvStringToKebabCase } from '../mixins/XdvStringToKebabCase'
 import { XdvGetData } from '../mixins/XdvGetData';
 
+let data = {}
 export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   static get properties() {
     return {
@@ -24,9 +25,12 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
     this.slides = []
     this.sliderContainer = null 
     document.addEventListener('xdvCheckboxToggle', this.xdvUrlsCarousel.bind(this))
-    
-    
   } 
+
+  connectedCallback() {
+    super.connectedCallback();
+    
+  }
   
    firstUpdated () {
      (async() => {
@@ -47,6 +51,7 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   }
 
   xdvChangeSlide (e) {
+    console.log('DATA ', this.data, this.urls)
     e.stopPropagation()
     let stepValue = false
     e.target.closest('.slider__slide') && (stepValue = (Number(!e.shiftKey) || -1))
@@ -78,7 +83,6 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   async xdvUrlsCarousel (e) {
     if (e.detail.id === this.getAttribute('id')) {
       this.slideUrls = e.detail.value;
-
       this.urls = eval(`this.data.${this.slideUrls}`),
       this.slidesNumber = this.urls?.length - 1
       this.slideSelected = 0
@@ -86,33 +90,50 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
     }
   }
 
-  render() {
+  get loadingTemplate () {
+    return html`
+    <div class="slider__slide" >
+      <h3>Cargando componente </h3>
+    </div>
+    `
+  }
+
+  get carouselTemplate () {
     return html`
       <div class="slider__container" @click=${this.xdvChangeSlide} .slideUrls=${this.getAttribute('slideUrls')} >
-        ${this.urls
-          ? this.urls.map(url => (
+        ${
+          this.urls.map(url => (
             html`
               <div class="slider__slide" >
                 <img src=${url} alt="" />
               </div>
             `
           ))
-          : html``
+          
       }
         <button class='slider__btn slider__btn--prev' @click=${this.xdvChangeSlide} type="button">&lt;</button>
         <button class='slider__btn slider__btn--next' @click=${this.xdvChangeSlide} type="button">&gt;</button>
         <div class="slider__dots">
-        ${this.urls
-          ? this.urls.map((url, index) => {
+        ${
+          this.urls.map((url, index) => {
             return html`
               <div class="slider__dot" ?selected=${(index===this.slideSelected) ? true : false} @click=${(e) => this.xdvChangeSlideDots(index, e)}>
               </div>
             `
           })
-          : html``
         }
         </div>
       </div>
+    `
+  }
+
+  render() {
+    return html`
+      ${
+        !this.urls
+          ? this.loadingTemplate
+          : this.carouselTemplate
+      }
     `;
   }
 
