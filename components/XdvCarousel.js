@@ -18,40 +18,22 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   constructor () {
     super()
     this.slideUrls = ''
-    this.urls = false //eval(`images.${this.slideUrls}`)
-    this.slidesNumber = false //this.urls.length - 1
+    this.urls = false 
+    this.slidesNumber = false 
     this.slideSelected = 0
     this.slides = []
     this.sliderContainer = null 
-    // document.addEventListener('xdvDataDetail', this.xdvSetData.bind(this))
     document.addEventListener('xdvCheckboxToggle', this.xdvUrlsCarousel.bind(this))
     
     
   } 
   
-  connectedCallback() {
-    super.connectedCallback();
-    console.log('slideUrlsslideUrls ', this.slideUrls)
-    console.log('Ejecutándose connectedCallback');
-    // document.addEventListener('xdvDataDetail', this.xdvSetData.bind(this))
-    console.log('DATA 1', this.data)
-  }
-
-  // xdvSetData (e) {
-  //   this.urls = e.detail.data.urls900,
-  //   this.slidesNumber = this.urls.length - 1
-  //   console.log('SET DATA ', this.urls, this.slidesNumber)
-  // }
-
    firstUpdated () {
-    
-    //  this.getData()
      (async() => {
         await this.getData()
-        console.log('DATA 2', await this.data)
         this.urls = await eval(`this.data.${this.slideUrls}`),
         this.slidesNumber = await this.urls.length - 1
-        console.log('SET DATA ', this.urls, this.slidesNumber)
+      
       })()
     this.slides = this.shadowRoot.querySelectorAll('.slider__slide')
     const attributes = Object.assign({}, this.dataset)
@@ -80,7 +62,7 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
     this.xdvTranslateSlide(this.slideSelected)
   }
 
-  xdvChangeSlide2 (index, e) {
+  xdvChangeSlideDots (index, e) {
     e.stopPropagation()
     this.slideSelected = index
     this.xdvTranslateSlide(this.slideSelected)    
@@ -95,13 +77,12 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
 
   async xdvUrlsCarousel (e) {
     if (e.detail.id === this.getAttribute('id')) {
-      console.log('ZZZZZZZZZZZZZZZZZZ', this.data)
-      this.slideUrls = e.detail.value
-      this.urls = eval(`this.data.${this.slideUrls}`) //this.data.urls900random //eval(`images.${this.slideUrls}`)
-      this.slidesNumber = this.urls.length - 1
-      this.slideSelected = 0 //this.slideSelected > this.slidesNumber ? this.slidesNumber : this.slideSelected
+      this.slideUrls = e.detail.value;
+
+      this.urls = eval(`this.data.${this.slideUrls}`),
+      this.slidesNumber = this.urls?.length - 1
+      this.slideSelected = 0
       this.xdvTranslateSlide(this.slideSelected)
-      // this.requestUpdate() no es necesario, se reescribe el array no se muta
     }
   }
 
@@ -124,7 +105,7 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
         ${this.urls
           ? this.urls.map((url, index) => {
             return html`
-              <div class="slider__dot" ?selected=${(index===this.slideSelected) ? true : false} @click=${(e) => this.xdvChangeSlide2(index, e)}>
+              <div class="slider__dot" ?selected=${(index===this.slideSelected) ? true : false} @click=${(e) => this.xdvChangeSlideDots(index, e)}>
               </div>
             `
           })

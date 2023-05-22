@@ -32,9 +32,13 @@ document.querySelector('#app').innerHTML = `
       >
       </xdv-carousel>
       <div class='absolute top-8 left-8'>
-        <xdv-checkbox data-check-id='carousel_b' checked>
-          
-        </xdv-checkbox>
+        <xdv-checkbox
+        data-check-id='carousel_b'
+        data-value-false='urls900'
+        data-value-true='urls900_random'
+        checked
+      >  
+      </xdv-checkbox>
       </div>
     </div>
     <div></div>
@@ -56,6 +60,8 @@ document.querySelector('#app').innerHTML = `
         data-switch-item-checked-position='1.5rem -0.375rem'
         data-switch-bar-height='0.5rem'
         data-switch-item-checked-bg='#df5c16'
+        data-value-false='urls900_2'
+        data-value-true='urls900_random'
       >
         <p slot='description'>Imagenes fijas o random</p>
       </xdv-checkbox>

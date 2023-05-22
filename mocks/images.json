@@ -1,20 +1,4 @@
 {
-  "urls200": [
-    "https://picsum.photos/seed/1/200",
-    "https://picsum.photos/seed/2/200",
-    "https://picsum.photos/seed/3/200",
-    "https://picsum.photos/seed/4/200",
-    "https://picsum.photos/seed/5/200",
-    "https://picsum.photos/seed/6/200"
-  ],
-  "urls400": [
-    "https://picsum.photos/seed/1/400",
-    "https://picsum.photos/seed/2/400",
-    "https://picsum.photos/seed/3/400",
-    "https://picsum.photos/seed/4/400",
-    "https://picsum.photos/seed/5/400",
-    "https://picsum.photos/seed/6/400"
-  ],
   "urls900": [
     "https://picsum.photos/seed/1/900/500",
     "https://picsum.photos/seed/2/900/500",
@@ -23,7 +7,7 @@
     "https://picsum.photos/seed/5/900/500",
     "https://picsum.photos/seed/6/900/500"
   ],
-  "urls900random": [
+  "urls900_random": [
     "https://picsum.photos/900/500?random=1",
     "https://picsum.photos/900/500?random=2",
     "https://picsum.photos/900/500?random=3",
@@ -33,12 +17,15 @@
     "https://picsum.photos/900/500?random=7",
     "https://picsum.photos/900/500?random=8"
   ],
-  "urls9002": [
+  "urls900_2": [
     "https://picsum.photos/seed/7/900/500",
     "https://picsum.photos/seed/8/900/500",
     "https://picsum.photos/seed/9/900/500",
     "https://picsum.photos/seed/10/900/500",
     "https://picsum.photos/seed/11/900/500",
-    "https://picsum.photos/seed/12/900/500"
+    "https://picsum.photos/seed/12/900/500",
+    "https://picsum.photos/seed/13/900/500",
+    "https://picsum.photos/seed/14/900/500",
+    "https://picsum.photos/seed/15/900/500"
   ]
 }

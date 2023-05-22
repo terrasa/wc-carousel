@@ -101,7 +101,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
       ? this.value = this.checked = !this.checked
       : (this.loaded = true, this.value = this.checked)
     
-    this.value = this.checked ? 'urls900random' : 'urls900'
+    this.value = this.checked ? `${this.dataset.valueTrue}` : `${this.dataset.valueFalse}`
     const xdvCheckboxToggle = new CustomEvent('xdvCheckboxToggle', {
       bubbles: true,
       composed: true,
@@ -118,7 +118,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
       <div class='sw__continer'>
         <div class='sw__item'></div>
       </div>
-      <input type="checkbox" id='check_toggle' name='check_toggle' value='urls900random' ?loaded=${this.loaded} ?checked=${this.checked} @input=${this.xdvToggleCheckbox}>
+      <input type="checkbox" id='check_toggle' name='check_toggle' ?loaded=${this.loaded} @input=${this.xdvToggleCheckbox}>
       ${ this.isLabel && html`<label for='check_toggle'> <slot name='description'></slot> </label>`}
     `
   }

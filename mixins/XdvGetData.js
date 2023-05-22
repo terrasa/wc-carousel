@@ -3,43 +3,29 @@ export const XdvGetData = (superclass) => {
 
     static get properties() {
       return {
-        data: { type: Object },
-        apiUrl: { type: String}
+        apiUrl: { type: String},
+        data: { type: Object }
       };
     }
 
     constructor () {
       super()
 
-      this.data = {}
       this.apiUrl = this.dataset.apiUrl
+      this.data = {}
     }
-
-    // connectedCallback() {
-    //   super.connectedCallback();
-      
-    //   this.data = fetch('http://localhost:5173/mocks/images.json')
-    //     .then((response) => response.json())
-    //     .then((json) => json
-    //     );
-    //   console.log('¡sdfgsdfg!',this.data)
-    // }
 
     async getData () {
       this.data = await fetch(this.apiUrl)
       .then((response) => response.json())
       .then((json) => json
       );
-
-      // const xdvDataDetail = new CustomEvent('xdvDataDetail', {
-      //   bubbles: true,
-      //   composed: true,
-      //   detail: {
-      //     data: this.data
-      //   }
-      // })
-      // this.dispatchEvent(xdvDataDetail)
     }
   }
 
 }
+
+
+// https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
+// https://api.unsplash.com/search/photos/?page=1&per_page=9&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
+// https://api.unsplash.com/search/photos/?page=1&per_page=4&query=wanderlust&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
