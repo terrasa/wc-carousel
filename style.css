@@ -1,0 +1,112 @@
+:root {
+  --text-base: 16px;
+
+  --page:       #eff4f6;
+  --page-light: #ffffff;
+  --page-dark:  #f5f8fa;
+  --grey-primary:      #4a4a4a;  
+  --grey-primary--20:  #dbdada;
+  --grey-primary--10:  #ededed;
+  --grey-primary--6:   #f4f4f4;
+  --grey-primary--2:   #fbfbfb;
+  --grey-secondary:    #5e5e5e;
+  --grey-tertiary:     #707070; 
+  --grey-inactive:     #bcbcbc;
+  --msg-red:          #ff7764;
+  --msg-orange:       #ffae64;
+  --msg-green:        #50e28b; 
+  --soft-excel:       #18723e;
+  --soft-word:        #225fb8;
+  --soft-ppt:         #9a3524;
+
+  --client-primary:            #27147a;
+  --client-primary--hover:     #361999;
+  --client-secondary:          #29b1b3;
+  --client-secondary--hover:   #007991;
+  --client-tertiary:           #293e67;
+  --client-tertiary-2:         #003780;
+  --client-tertiary-3:         #137bb6;
+  --client-tertiary-4:         #00acd0;
+  --client-tertiary-5:         #56a08c;
+  --client-tertiary-6:         #643588;
+  --client-tertiary-7:         #93347f;
+  --client-tertiary-8:         #f45d69;
+  --client-tertiary-9:         #ff9505;
+  --client-tertiary-10:        #f06543;
+
+  --white: #fff;
+
+  --bg-gap-color:  var(--grey-primary--10);
+  --text-color: var(--grey-primary);
+  --icon-color: var(--grey-secondary);
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: var(--text-base, 16px);
+
+  color: var(--text-color);
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* display: flex;
+  place-items: center;
+  min-width: 320px;
+   */
+}
+
+#app {
+  padding: 2rem;
+  /* max-width: 1280px;
+  margin: 0 auto;
+  text-align: center; */
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-8 {
+  top: 8px;
+}
+
+.left-8 {
+  left: 8px;
+}
+
+.top-12 {
+  top: 12px;
+}
+
+.left-12 {
+  left: 12px;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+
+
+/* Media query */
+
+@media screen and (min-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
