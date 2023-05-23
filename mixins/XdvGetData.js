@@ -56,6 +56,7 @@ export const XdvGetData = (superclass) => {
         .then((json) => json
         );
         this.urls = await eval(`this.data.${this.slideUrls}`)
+        this.slidesNumber = await this.urls.length - 1
     }
   }
 
