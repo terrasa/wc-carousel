@@ -8,19 +8,19 @@ let data = {}
 export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   static get properties() {
     return {
-      slidesNumber: { type: Number },
+      // slideUrls: { type: String },
+      // urls: { type: Array },
+      // slidesNumber: { type: Number },
       slideSelected: { type: Number},
-      slideUrls: { type: String },
-      urls: { type: Array },
       slides: { type: Array }
     };
   }
 
   constructor () {
     super()
-    this.slideUrls = ''
-    this.urls = false 
-    this.slidesNumber = false 
+    // this.slideUrls = ''
+    // this.urls = false 
+    // this.slidesNumber = false 
     this.slideSelected = 0
     this.slides = []
     this.sliderContainer = null 
@@ -35,8 +35,9 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
    firstUpdated () {
     (async() => {
       await this.getData()
-      this.urls = await eval(`this.data.${this.slideUrls}`),
-      this.slidesNumber = await this.urls.length - 1
+      console.log('DATAAA', await this.data)
+      // this.urls = await eval(`this.data.${this.slideUrls}`)
+      // this.slidesNumber = await this.urls.length - 1
       
     })()
     this.slides = this.shadowRoot.querySelectorAll('.slider__slide')

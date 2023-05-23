@@ -66,5 +66,24 @@ document.querySelector('#app').innerHTML = `
         <p slot='description'>Imagenes fijas o random</p>
       </xdv-checkbox>
     </div>
+    <br />
+    <xdv-carousel 
+      data-api-url='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
+      slideUrls='urls.regular'
+      data-slider-container-max-height='18rem'
+      data-slider-btn-color='rgb(248, 210, 121)'
+      data-slider-dot-color-hover='#e2cf70'
+    >
+    </xdv-carousel>
+    <br />
+    <xdv-carousel 
+      data-api-url='https://picsum.photos/v2/list?page=1&limit=3'
+      slideUrls='download_url'
+      data-slider-container-max-height='18rem'
+      data-slider-btn-color='rgb(248, 210, 121)'
+      data-slider-dot-color-hover='#e2cf70'
+    >
+    </xdv-carousel>
   </div>
+
 `
