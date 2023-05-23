@@ -68,12 +68,3 @@ export const XdvGetData = (superclass) => {
 // https://api.unsplash.com/search/photos/?page=1&per_page=9&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
 // https://api.unsplash.com/search/photos/?page=1&per_page=4&query=wanderlust&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
 
-
-//<xdv-carousel 
- //     data-api-url='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
-  //    slideUrls='urls.regular'
-  //    data-slider-container-max-height='18rem'
-  //    data-slider-btn-color='rgb(248, 210, 121)'
-  //    data-slider-dot-color-hover='#e2cf70'
-  //  >
-  //  </xdv-carousel>

@@ -63,11 +63,14 @@ document.querySelector('#app').innerHTML = `
         data-value-false='urls900_2'
         data-value-true='urls900_random'
       >
-        <p slot='description'>Imagenes fijas o random</p>
+      <p slot='description'>Imagenes fijas o random</p>
       </xdv-checkbox>
     </div>
-    <br />
+  </div>
+  <br />
+  <div class="relative">
     <xdv-carousel 
+      id='carousel_c'
       data-api-url='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
       slideUrls='urls.regular'
       data-slider-container-max-height='18rem'
@@ -75,15 +78,25 @@ document.querySelector('#app').innerHTML = `
       data-slider-dot-color-hover='#e2cf70'
     >
     </xdv-carousel>
-    <br />
-    <xdv-carousel 
-      data-api-url='https://picsum.photos/v2/list?page=1&limit=3'
-      slideUrls='download_url'
-      data-slider-container-max-height='18rem'
-      data-slider-btn-color='rgb(248, 210, 121)'
-      data-slider-dot-color-hover='#e2cf70'
-    >
-    </xdv-carousel>
+    <div class='absolute top-8 left-8'>
+        <xdv-checkbox
+        data-check-id='carousel_c'
+        data-value-false='urls.regular'
+        data-value-true='urls.regular'
+        data-api-value-false='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
+        data-api-value-true='https://api.unsplash.com/search/photos/?page=1&per_page=4&query=wanderlust&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
+        checked
+      >  
+      </xdv-checkbox>
+    </div>
   </div>
-
+  <br />
+  <xdv-carousel 
+    data-api-url='https://picsum.photos/v2/list?page=1&limit=3'
+    slideUrls='download_url'
+    data-slider-container-max-height='18rem'
+    data-slider-btn-color='rgb(248, 210, 121)'
+    data-slider-dot-color-hover='#e2cf70'
+  >
+  </xdv-carousel>
 `

@@ -64,7 +64,8 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
       },
       value: { type: String },
       id: { type: String },
-      loaded: { type: Boolean }
+      loaded: { type: Boolean },
+      apiValue: { type: String}
     }
   }
 
@@ -75,6 +76,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
     this.checked = false
     this.value = ''
     this.isLabel = false
+    this.apiValue = ''
   }
 
   connectedCallback() {
@@ -102,11 +104,13 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
       : (this.loaded = true, this.value = this.checked)
     
     this.value = this.checked ? `${this.dataset.valueTrue}` : `${this.dataset.valueFalse}`
+    this.apiValue = this.checked ? `${this.dataset.apiValueTrue}` : `${this.dataset.apiValueFalse}`
     const xdvCheckboxToggle = new CustomEvent('xdvCheckboxToggle', {
       bubbles: true,
       composed: true,
       detail: {
         value: this.value,
+        apiValue: this.apiValue,
         id: this.id
       }
     })
@@ -124,3 +128,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
   }
 }
 customElements.define('xdv-checkbox', XdvCheckbox)
+
+
+// data-api-value-false=''
+// data-api-value-true=''

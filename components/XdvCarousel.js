@@ -49,6 +49,7 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
     }
         
     this.sliderContainer = this.shadowRoot.querySelector('.slider__container')
+
   }
 
   xdvChangeSlide (e) {
@@ -82,10 +83,21 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   }
 
   async xdvUrlsCarousel (e) {
-    if (e.detail.id === this.getAttribute('id')) {
+    if (e.detail.id === this.getAttribute('id') && this.dataset.apiValueFalse === undefined && e.detail.apiValue === '') {
       this.slideUrls = e.detail.value;
       this.urls = eval(`this.data.${this.slideUrls}`),
       this.slidesNumber = this.urls?.length - 1
+      this.slideSelected = 0
+      this.xdvTranslateSlide(this.slideSelected)
+    } else if (e.detail.id === this.getAttribute('id') && e.detail.apiValue != '') {
+      this.slideUrls = e.detail.value;
+      (async() => {
+        await this.getData()
+        console.log('DATA - NEW', await this.data)
+        
+      })()
+      // this.urls = eval(`this.data.${this.slideUrls}`),
+      // this.slidesNumber = this.urls?.length - 1
       this.slideSelected = 0
       this.xdvTranslateSlide(this.slideSelected)
     }
