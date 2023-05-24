@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-// import images from '../mocks/images.json'
 
 import { XdvStringToKebabCase } from '../mixins/XdvStringToKebabCase'
 import { XdvGetData } from '../mixins/XdvGetData';
@@ -8,9 +7,6 @@ let data = {}
 export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   static get properties() {
     return {
-      // slideUrls: { type: String },
-      // urls: { type: Array },
-      // slidesNumber: { type: Number },
       slideSelected: { type: Number},
       slides: { type: Array }
     };
@@ -18,26 +14,15 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
 
   constructor () {
     super()
-    // this.slideUrls = ''
-    // this.urls = false 
-    // this.slidesNumber = false 
     this.slideSelected = 0
     this.slides = []
     this.sliderContainer = null 
     document.addEventListener('xdvCheckboxToggle', this.xdvUrlsCarousel.bind(this))
   } 
-
-  connectedCallback() {
-    super.connectedCallback();
-    
-  }
   
    firstUpdated () {
     (async() => {
       await this.getData()
-      console.log('DATAAA', await this.data)
-      // this.urls = await eval(`this.data.${this.slideUrls}`)
-      // this.slidesNumber = await this.urls.length - 1
       
     })()
     this.slides = this.shadowRoot.querySelectorAll('.slider__slide')
@@ -53,7 +38,6 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   }
 
   xdvChangeSlide (e) {
-    console.log('DATA ', this.data, this.urls)
     e.stopPropagation()
     let stepValue = false
     e.target.closest('.slider__slide') && (stepValue = (Number(!e.shiftKey) || -1))
@@ -83,21 +67,19 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
   }
 
   async xdvUrlsCarousel (e) {
-    if (e.detail.id === this.getAttribute('id') && this.dataset.apiValueFalse === undefined && e.detail.apiValue === '') {
+    
+    if (e.detail.id === this.getAttribute('id') && this.dataset.apiValueFalse === undefined && e.detail.apiValue === 'undefined') {
       this.slideUrls = e.detail.value;
       this.urls = eval(`this.data.${this.slideUrls}`),
       this.slidesNumber = this.urls?.length - 1
       this.slideSelected = 0
       this.xdvTranslateSlide(this.slideSelected)
-    } else if (e.detail.id === this.getAttribute('id') && e.detail.apiValue != '') {
-      this.slideUrls = e.detail.value;
+    } else if (e.detail.id === this.getAttribute('id') && ( e.detail.apiValue != 'undefined')) { // e.detail.apiValue != '' &&
       (async() => {
+        this.slideUrls = await e.detail.value;
+        this.apiUrl = await e.detail.apiValue;
         await this.getData()
-        console.log('DATA - NEW', await this.data)
-        
       })()
-      // this.urls = eval(`this.data.${this.slideUrls}`),
-      // this.slidesNumber = this.urls?.length - 1
       this.slideSelected = 0
       this.xdvTranslateSlide(this.slideSelected)
     }

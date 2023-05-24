@@ -23,19 +23,23 @@ export const XdvGetData = (superclass) => {
 
     async getData () {
       // url from api.unsplash
-      if (this.apiUrl.startsWith('https://api.unsplash.com/')) {
+      if (this.apiUrl.startsWith('https://api.unsplash.com/photos/')) {
         this.data = await fetch(this.apiUrl)
           .then((response) => response.json())
           .then((json) => json
         );
         this.urls = await this.data.map(item => eval(`item.${this.slideUrls}`))
-        // this.urls = await this.data.map(item => {
-        //   item.urls.regular;
-        //   console.log('ITEM -- ', item, this.slideUrls, eval(`item.${this.slideUrls}`))
-        // })
-
         this.slidesNumber = await this.urls.length - 1
-        console.log('GET DATA -', this.urls, this.slidesNumber)
+        return
+      }
+
+      if (this.apiUrl.startsWith('https://api.unsplash.com/search/photos/')) {
+        this.data = await fetch(this.apiUrl)
+          .then((response) => response.json())
+          .then((json) => json
+        );
+        this.urls = await this.data.results.map(item => eval(`item.${this.slideUrls}`))
+        this.slidesNumber = await this.urls.length - 1
         return
       }
 
@@ -47,7 +51,6 @@ export const XdvGetData = (superclass) => {
         );
         this.urls = await this.data.map(item => item[this.slideUrls])
         this.slidesNumber = await this.urls.length - 1
-        
         return
       }
 
@@ -61,10 +64,4 @@ export const XdvGetData = (superclass) => {
   }
 
 }
-
-// https://picsum.photos/v2/list?page=1&limit=3
-
-// https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
-// https://api.unsplash.com/search/photos/?page=1&per_page=9&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
-// https://api.unsplash.com/search/photos/?page=1&per_page=4&query=wanderlust&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU
 

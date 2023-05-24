@@ -83,8 +83,8 @@ document.querySelector('#app').innerHTML = `
         data-check-id='carousel_c'
         data-value-false='urls.regular'
         data-value-true='urls.regular'
-        data-api-value-false='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
-        data-api-value-true='https://api.unsplash.com/search/photos/?page=1&per_page=4&query=wanderlust&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
+        data-api-value-true='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
+        data-api-value-false='https://api.unsplash.com/search/photos/?page=1&per_page=4&query=wanderlust&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'
         checked
       >  
       </xdv-checkbox>
