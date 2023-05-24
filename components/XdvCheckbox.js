@@ -1,7 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { XdvStringToKebabCase } from '../mixins/XdvStringToKebabCase'
+import { XdvSetCustomPropertiesFromAttributesMixin } from '../mixins/XdvSetCustomPropertiesFromAttributesMixin'
 
-export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
+export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFromAttributesMixin(LitElement)) {
   static styles = [
     css`
       :host {
@@ -88,15 +89,8 @@ export class XdvCheckbox extends XdvStringToKebabCase(LitElement) {
   firstUpdated () {
     this.id = this.dataset.checkId
     this.isLabel = this.querySelector("[slot='description']")
-
     this.xdvToggleCheckbox ()
-
-    const attributes = Object.assign({}, this.dataset)
-    const attKeys = Object.keys(attributes)
-    for(let i=0; i< attKeys.length; i++) {
-      let attKey = attKeys[i]
-      attKey.startsWith('switch') && this.renderRoot.host.style.setProperty(`--xdv-${this.kebabCase(attKey)}`, attributes[attKeys[i]] )      
-    }
+    this.xdvSetCustomProperties ('switch')
   }
 
   xdvToggleCheckbox () {    

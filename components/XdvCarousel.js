@@ -2,9 +2,10 @@ import { LitElement, html, css } from 'lit';
 
 import { XdvStringToKebabCase } from '../mixins/XdvStringToKebabCase'
 import { XdvGetData } from '../mixins/XdvGetData';
+import { XdvSetCustomPropertiesFromAttributesMixin } from '../mixins/XdvSetCustomPropertiesFromAttributesMixin';
 
 let data = {}
-export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
+export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(XdvSetCustomPropertiesFromAttributesMixin(LitElement))) {
   static get properties() {
     return {
       slideSelected: { type: Number},
@@ -26,15 +27,8 @@ export class XdvCarousel extends XdvStringToKebabCase(XdvGetData(LitElement)) {
       
     })()
     this.slides = this.shadowRoot.querySelectorAll('.slider__slide')
-    const attributes = Object.assign({}, this.dataset)
-    const attKeys = Object.keys(attributes)
-    for(let i=0; i< attKeys.length; i++) {
-      let attKey = attKeys[i]
-      attKey.startsWith('slide') && this.renderRoot.host.style.setProperty(`--xdv-${this.kebabCase(attKey)}`, attributes[attKeys[i]] )      
-    }
-        
+    this.xdvSetCustomProperties ('slide')
     this.sliderContainer = this.shadowRoot.querySelector('.slider__container')
-
   }
 
   xdvChangeSlide (e) {

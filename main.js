@@ -81,6 +81,9 @@ document.querySelector('#app').innerHTML = `
     <div class='absolute top-8 left-8'>
         <xdv-checkbox
         data-check-id='carousel_c'
+        data-switch-bar-bg='var(--client-tertiary-5)'
+        data-switch-item-bg='var(--client-tertiary)'
+        data-switch-item-checked-bg='var(--msg-green)'
         data-value-false='urls.regular'
         data-value-true='urls.regular'
         data-api-value-true='https://api.unsplash.com/photos/random?count=6&query=canada&client_id=pUjkCSXSh-LvqY8sQ2NmoZlj6hAraID1UlkfeEGKAyU'

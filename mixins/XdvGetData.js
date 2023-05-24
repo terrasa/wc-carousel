@@ -22,7 +22,7 @@ export const XdvGetData = (superclass) => {
     }
 
     async getData () {
-      // url from api.unsplash
+      // url from api.unsplash.com/photos
       if (this.apiUrl.startsWith('https://api.unsplash.com/photos/')) {
         this.data = await fetch(this.apiUrl)
           .then((response) => response.json())
@@ -32,7 +32,7 @@ export const XdvGetData = (superclass) => {
         this.slidesNumber = await this.urls.length - 1
         return
       }
-
+      // url from api.unsplash.com/search/photos/
       if (this.apiUrl.startsWith('https://api.unsplash.com/search/photos/')) {
         this.data = await fetch(this.apiUrl)
           .then((response) => response.json())
@@ -54,6 +54,7 @@ export const XdvGetData = (superclass) => {
         return
       }
 
+      // url from json file in mocks
       this.data = await fetch(this.apiUrl)
         .then((response) => response.json())
         .then((json) => json
