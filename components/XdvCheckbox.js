@@ -73,7 +73,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
   constructor () {
     super()
 
-    this.id = null
+    this.id = false
     this.checked = false
     this.loaded = false
     this.value = ''
@@ -83,11 +83,14 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
 
   connectedCallback() {
     super.connectedCallback();
-    
+  
   }
 
   firstUpdated () {
-    this.id = this.dataset.checkId
+    console.log('DATA ID---', this.id, this.dataset.checkId)
+    this.id = this.dataset.checkId || this.xdvRandomID()
+    console.log('DATA ID---2', this.id, this.dataset.checkId)
+
     this.isLabel = this.querySelector("[slot='description']")
     this.xdvToggleCheckbox ()
     this.xdvSetCustomProperties ('switch')
@@ -110,6 +113,14 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
       }
     })
     this.dispatchEvent(xdvCheckboxToggle)
+    console.log('value-2', this.shadowRoot.querySelector('input').value)
+  }
+
+  xdvRandomID () {
+    const randomId = Math.random()
+    const alphanumericId = randomId.toString(36).slice(2)
+    console.log('ID', alphanumericId)
+    return alphanumericId
   }
 
   render () {
@@ -117,8 +128,8 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
       <div class='sw__continer'>
         <div class='sw__item'></div>
       </div>
-      <input type="checkbox" id='check_toggle' name='check_toggle' ?loaded=${this.loaded} @input=${this.xdvToggleCheckbox}>
-      ${ this.isLabel && html`<label for='check_toggle'> <slot name='description'></slot> </label>`}
+      <input type="checkbox" id=${this.id} name=${this.id} value=${this.dataset.valueTrue} ?loaded=${this.loaded} @input=${this.xdvToggleCheckbox}>
+      ${ this.isLabel && html`<label for=${this.id}> <slot name='description'></slot> </label>`}
     `
   }
 }
