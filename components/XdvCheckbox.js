@@ -87,9 +87,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
   }
 
   firstUpdated () {
-    console.log('DATA ID---', this.id, this.dataset.checkId)
     this.id = this.dataset.checkId || this.xdvRandomID()
-    console.log('DATA ID---2', this.id, this.dataset.checkId)
 
     this.isLabel = this.querySelector("[slot='description']")
     this.xdvToggleCheckbox ()
@@ -113,13 +111,11 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
       }
     })
     this.dispatchEvent(xdvCheckboxToggle)
-    console.log('value-2', this.shadowRoot.querySelector('input').value)
   }
 
   xdvRandomID () {
     const randomId = Math.random()
     const alphanumericId = randomId.toString(36).slice(2)
-    console.log('ID', alphanumericId)
     return alphanumericId
   }
 
