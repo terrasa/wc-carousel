@@ -96,7 +96,7 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
 
   xdvToggleCheckbox () {    
     this.loaded
-    ? this.value = this.checked = !this.checked
+    ? this.checked = this.checked = !this.checked
     : (this.loaded = true, this.value = this.checked)
     
     this.value = this.checked ? `${this.dataset.valueTrue}` : `${this.dataset.valueFalse}`
