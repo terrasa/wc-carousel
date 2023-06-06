@@ -22,6 +22,7 @@ export const XdvGetData = (superclass) => {
     }
 
     async getData () {
+      console.log('url', this.apiUrl)
       // url from api.unsplash.com/photos
       if (this.apiUrl.startsWith('https://api.unsplash.com/photos/')) {
         this.data = await fetch(this.apiUrl)

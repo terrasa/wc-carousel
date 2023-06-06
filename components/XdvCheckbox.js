@@ -107,7 +107,9 @@ export class XdvCheckbox extends XdvStringToKebabCase(XdvSetCustomPropertiesFrom
       detail: {
         value: this.value,
         apiValue: this.apiValue,
-        id: this.id
+        id: this.id,
+        checked: this.checked,
+        checkedItem: this,
       }
     })
     this.dispatchEvent(xdvCheckboxToggle)
